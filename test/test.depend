@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1636921724 source:c:\users\xiaomi\desktop\космос\test\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string>
+
