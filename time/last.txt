@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <fstream>
+#include <iomanip>
+#include <cstring>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+    int count_of_files;
+    cin >> count_of_files;
+    for(int v=0;v<count_of_files;v++){
+        string st3 = "C:\\Users\\Xiaomi\\Desktop\\kk\\";
+        string st4 = "C:\\Users\\Xiaomi\\Desktop\\kk\\";
+        string st5 = "C:\\Users\\Xiaomi\\Desktop\\kk\\";
+        string inc;
+        cin >> inc;
+        st3.append(inc);
+        st4.append(inc);
+        st5.append(inc);
+        string st1 = ".txt";
+        string st2 = ".dat";
+        string st6 = "_time.txt";
+        st3.append(st6);
+        st4.append(st2);
+        st5.append(st1);
+        char name[255];
+        char name2[255];
+        char name3[255];
+        strcpy(name,st3.c_str());
+        strcpy(name2,st4.c_str());
+        strcpy(name3,st5.c_str()); ///шаманим с названием файлов
+        ofstream fileo(name); ///запись
+        ifstream filer (name2); ///значения
+        ifstream filer2 (name3); ///единички-нолики
+        string str;
+        getline(filer,str);/// переход на новую строчку
+        getline(filer2,str);
+        float time[50];
+        int matrix[50];
+        float check=0;
+        float sum = 0;
+        int k,p,n=0;
+        char sbuf;
+        /*
+        time - значения времени
+        matrix - единички/нолики
+        check - буфер прогона
+        k - счетчики
+        p - нужен для поиска массива
+        str - буферная строка
+        n - счетчик пятна
+        */
+        while (!filer2.eof()){
+                filer2>>sbuf;
+                if(sbuf=='N')
+                    cout<<" ";
+                else{
+                    for(k=0;k<3;k++){
+                        filer2>>check;
+                    } /// доходим до нужного массива
+                    for(k=0;k<49;k++){
+                        filer2>>matrix[k];
+                    } ///массив нолик-единичка
+                    for(k=0;k<77;k++){
+                        filer>>check;
+
+                    }
+                    for(k=0;k<49;k++){
+                        filer>>time[k];
+                        if(matrix[k]==1){
+                            sum+=time[k];
+                            n++;
+                        }
+                    } ///заполняем и проверям массив значений
+                    sum/=n;
+                    for(k=0;k<49;k++){
+                       if(time[k]!=0)
+                           fileo << abs(time[k]-sum) << " ";
+                    } ///выводим дельта t
+                    sum=0;
+                    n=0;
+                    for(k=0;k<49;k++){
+                       time[k]=0;
+                       matrix[k]=0;
+                    } ///обнуляем
+                }
+                    getline(filer,str);
+                    getline(filer2,str);
+        }
+        fileo.close();
+        filer.close();
+        filer2.close();
+    }
+}

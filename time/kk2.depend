@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1649863936 source:c:\users\xiaomi\desktop\kk2\main.cpp
+	<stdio.h>
+	<iostream>
+	<stdlib.h>
+	<string.h>
+	<fstream>
+	<iomanip>
+	<cstring>
+	<cmath>
+
